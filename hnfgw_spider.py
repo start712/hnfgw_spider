@@ -127,7 +127,7 @@ class hnfgw_spider(object):
 
             yield d1, d2, addition
         except:
-            log_obj.error('parse_details error %s\n%s' % (datetime.datetime.now(), traceback.format_exc()))
+            log_obj.error('parse_details error %s\nurl:%s\n%s' % (datetime.datetime.now(), url, traceback.format_exc()))
 
     def main(self):
         driver = self.initialization()
