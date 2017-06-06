@@ -1,0 +1,57 @@
+# -*- coding:utf-8 -*-  
+"""
+--------------------------------
+    @Author: Dyson
+    @Contact: Weaver1990@163.com
+    @file: hnfgw_spider.py
+    @time: 2017/6/5 14:49
+--------------------------------
+"""
+import selenium.webdriver
+import string
+import os
+import time
+import sys
+import selenium.webdriver
+
+sys.path.append(sys.prefix + "\\Lib\\MyWheels")
+reload(sys)
+sys.setdefaultencoding('utf8')
+import set_log  # log_obj.debug(文本)  "\x1B[1;32;41m (文本)\x1B[0m"
+
+log_obj = set_log.Logger('hnfgw_spider.log', set_log.logging.WARNING,
+                         set_log.logging.DEBUG)
+log_obj.cleanup('hnfgw_spider.log', if_cleanup=True)  # 是否需要在每次运行程序前清空Log文件
+
+
+class hnfgw_spider(object):
+    def __init__(self):
+        pass
+
+    def initialization(self):
+        # 初始化浏览器
+        desired_capabilities = selenium.webdriver.DesiredCapabilities.PHANTOMJS.copy()
+        headers = {'Accept': '*/*',
+                   'Accept-Language': 'en-US,en;q=0.8',
+                   'Cache-Control': 'max-age=0',
+                   'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.116 Safari/537.36',
+                   'Connection': 'keep-alive'
+                   }
+        for key, value in headers.iteritems():
+            desired_capabilities['phantomjs.page.customHeaders.{}'.format(key)] = value
+        desired_capabilities['phantomjs.page.customHeaders.User-Agent'] ='Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.95 Safari/537.36'
+
+        return selenium.webdriver.PhantomJS(desired_capabilities=desired_capabilities)
+
+    def main(self):
+        driver = self.initialization()
+
+        driver.get('http://www.hnfgw.com/WSBA/public/project/ProjectList.aspx')
+        driver.find_element_by_xpath('//*[@id="PageNavigator1_LnkBtnNext"]').click()
+        page_num = driver.find_element_by_xpath('//*[@id="PageNavigator1_LblPageIndex"]').text
+        print page_num
+
+
+if __name__ == '__main__':
+    hnfgw_spider = hnfgw_spider()
+    d = hnfgw_spider.initialization()

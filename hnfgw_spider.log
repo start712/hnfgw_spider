@@ -1,0 +1,26 @@
+[2017-06-06 15:27:42] [ERROR] [Time_Consuming: 275919毫秒] => 
+ parse_details error 2017-06-06 15:27:42.446000
+Traceback (most recent call last):
+  File "C:/Users/lenovo/Desktop/Projects/PythonProgramming/hnfgw_spider/hnfgw_spider.py", line 89, in parse_details
+    resp = requests.get(url, headers=self.headers)
+  File "C:\Python27\lib\site-packages\requests\api.py", line 70, in get
+    return request('get', url, params=params, **kwargs)
+  File "C:\Python27\lib\site-packages\requests\api.py", line 56, in request
+    return session.request(method=method, url=url, **kwargs)
+  File "C:\Python27\lib\site-packages\requests\sessions.py", line 488, in request
+    resp = self.send(prep, **send_kwargs)
+  File "C:\Python27\lib\site-packages\requests\sessions.py", line 641, in send
+    r.content
+  File "C:\Python27\lib\site-packages\requests\models.py", line 797, in content
+    self._content = bytes().join(self.iter_content(CONTENT_CHUNK_SIZE)) or bytes()
+  File "C:\Python27\lib\site-packages\requests\models.py", line 722, in generate
+    raise ChunkedEncodingError(e)
+ChunkedEncodingError: ('Connection broken: IncompleteRead(0 bytes read)', IncompleteRead(0 bytes read))
+
+[2017-06-06 15:27:42] [ERROR] [Time_Consuming: 275921毫秒] => 
+ parse_catalog error 2017-06-06 15:27:42.449000
+Traceback (most recent call last):
+  File "C:/Users/lenovo/Desktop/Projects/PythonProgramming/hnfgw_spider/hnfgw_spider.py", line 76, in parse_catalog
+    if d1 and d2:
+UnboundLocalError: local variable 'd1' referenced before assignment
+
